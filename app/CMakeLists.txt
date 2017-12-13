@@ -8,8 +8,8 @@ cmake_minimum_required(VERSION 3.4.1)
 
 
 
-set(pathOPENCV C:/OpenCV-android-sdk3)
-set(pathPROJECT C:/Users/LGE/AndroidStudioProjects/CardCam)
+set(pathOPENCV C:/SDK/OpenCV-android-sdk)
+set(pathPROJECT C:/Users/borna/AndroidStudioProjects/CardCam)
 set(pathLIBOPENCV_JAVA ${pathPROJECT}/app/src/main/JniLibs/${ANDROID_ABI}/libopencv_java3.so)
 
 
