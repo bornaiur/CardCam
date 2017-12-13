@@ -163,7 +163,7 @@ Java_com_dongyang_pjw_cardcam_CamPreview_FindEdgeAndDraw(JNIEnv *env, jobject in
 
 extern "C"
 JNIEXPORT bool JNICALL
-Java_com_dongyang_pjw_cardcam_TitleActivity_findCardFromImage(JNIEnv *env, jobject instance,
+Java_com_dongyang_pjw_cardcam_MainActivity_findCardFromImage(JNIEnv *env, jobject instance,
                                                               jlong matAddrInput, jlong matAddrOutput) {
     // TODO
     Mat &matInput = *(Mat *) matAddrInput;

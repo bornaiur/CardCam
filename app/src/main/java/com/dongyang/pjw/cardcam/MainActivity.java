@@ -1,70 +1,40 @@
 package com.dongyang.pjw.cardcam;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.opencv.android.BaseLoaderCallback;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import gun0912.tedbottompicker.TedBottomPicker;
 
-public class TitleActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "TITLE";
+    private static final String TAG = "Main";
+    private long lastBackTime;
     TedBottomPicker tedBottomPicker;
-    // opencv library load
-    static {
-        System.loadLibrary("opencv_java3");
-        System.loadLibrary("native-lib");
-    }
 
     Mat matResult;
+
     public native boolean findCardFromImage(long matAddrInput, long matAddrOutput);
-
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS:
-                {
-                    // afetr loading library , some tasks here
-                    if ( matResult != null ) matResult.release();
-
-                } break;
-                default:
-                {
-                    super.onManagerConnected(status);
-                } break;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_title);
+        setContentView(R.layout.activity_main);
 
-        mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+        //////
+        if ( matResult != null ) matResult.release();
 
-        tedBottomPicker = new TedBottomPicker.Builder(TitleActivity.this)
+        tedBottomPicker = new TedBottomPicker.Builder(MainActivity.this)
                 .setOnImageSelectedListener(new TedBottomPicker.OnImageSelectedListener() {
                     @Override
                     public void onImageSelected(Uri uri) {
@@ -99,13 +69,6 @@ public class TitleActivity extends AppCompatActivity {
 
                             imgMAT.release();
 
-//                        }catch (FileNotFoundException e) {
-//                            // TODO Auto-generated catch block
-//                            e.printStackTrace();
-//                        } catch (IOException e) {
-//                            // TODO Auto-generated catch block
-//                            e.printStackTrace();
-//                        }
                         }catch(Exception e){
 
                             Log.d(TAG, ""+e);
@@ -123,13 +86,8 @@ public class TitleActivity extends AppCompatActivity {
     {
         super.onResume();
 
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found.");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION, this, mLoaderCallback);
-        } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-        }
+        /////
+        if ( matResult != null ) matResult.release();
     }
 
     public void goCam(View view) {
@@ -139,5 +97,14 @@ public class TitleActivity extends AppCompatActivity {
 
     public void goGal(View view) {
         tedBottomPicker.show(getSupportFragmentManager());
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(System.currentTimeMillis() - lastBackTime < 2000){
+            finish();
+        }
+        Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        lastBackTime = System.currentTimeMillis();
     }
 }
