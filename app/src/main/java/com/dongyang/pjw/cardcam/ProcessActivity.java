@@ -74,6 +74,7 @@ public class ProcessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_process);
+        this.setTitle("CardSaver 명함인식");
 
         ed_name = findViewById(R.id.name);
         ed_phonenumber = findViewById(R.id.phonenumber);

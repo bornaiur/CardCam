@@ -2,4 +2,5 @@
     <string name="app_name">CardSaver</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="kakao_app_key">a995e6b7a962470984212c72373c4b2c</string>
 </resources>

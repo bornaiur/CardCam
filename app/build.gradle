@@ -48,4 +48,8 @@ dependencies {
 
     compile 'gun0912.ted:tedbottompicker:1.0.4'
 
+
+    compile group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION // KaKaoSDK
+    compile 'com.googlecode.android-query:android-query:0.25.9' //AQuery
+    compile 'de.hdodenhof:circleimageview:1.2.1'
 }
