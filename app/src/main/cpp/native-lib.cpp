@@ -34,14 +34,15 @@ Java_com_dongyang_pjw_cardcam_CamPreview_FindEdgeAndDraw(JNIEnv *env, jobject in
     cvtColor(matInput, imgray, CV_RGBA2GRAY);
 
     // blur
-    Mat blur;
-    GaussianBlur(imgray, blur, Size(3, 3), 0);
-    imgray.release();
+    // Mat blur;
+    // GaussianBlur(imgray, blur, Size(3, 3), 0);
+    // imgray.release();
 
     // canny edge
     Mat edge;
-    Canny(blur, edge, 75, 200);
-    blur.release();
+    Canny(imgray, edge, 75, 200);
+    // Canny(blur, edge, 75, 200);
+    // blur.release();
 
     // contours
     vector<vector<Point>> contours;
@@ -61,7 +62,7 @@ Java_com_dongyang_pjw_cardcam_CamPreview_FindEdgeAndDraw(JNIEnv *env, jobject in
         if (i >= 4) break;
 
         double peri = arcLength(Mat(contours[i]), true);
-        approxPolyDP(Mat(contours[i]), approx[0], 0.02 * peri, true);
+        approxPolyDP(Mat(contours[i]), approx[0], 0.02 * peri, true);  /// 0.02 to 0.05
 
         if (approx[0].size() == 4) {
             double camsize = matInput.cols * matInput.rows;
@@ -178,14 +179,15 @@ Java_com_dongyang_pjw_cardcam_MainActivity_findCardFromImage(JNIEnv *env, jobjec
     cvtColor(matInput, imgray, CV_RGBA2GRAY);
 
     // blur
-    Mat blur;
-    GaussianBlur(imgray, blur, Size(3, 3), 0);
-    imgray.release();
+    // Mat blur;
+    // GaussianBlur(imgray, blur, Size(3, 3), 0);
+    // imgray.release();
 
     // canny edge
     Mat edge;
-    Canny(blur, edge, 75, 200);
-    blur.release();
+    Canny(imgray, edge, 75, 200);
+    // Canny(blur, edge, 75, 200);
+    // blur.release();
 
     // contours
     vector<vector<Point>> contours;
@@ -208,7 +210,7 @@ Java_com_dongyang_pjw_cardcam_MainActivity_findCardFromImage(JNIEnv *env, jobjec
         }
 
         double peri = arcLength(Mat(contours[i]), true);
-        approxPolyDP(Mat(contours[i]), approx[0], 0.02 * peri, true);
+        approxPolyDP(Mat(contours[i]), approx[0], 0.02 * peri, true); //0.02 to 0.05
 
         if (approx[0].size() == 4) {
             double camsize = matInput.cols * matInput.rows;

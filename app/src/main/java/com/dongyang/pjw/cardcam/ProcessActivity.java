@@ -233,16 +233,27 @@ public class ProcessActivity extends AppCompatActivity {
             // tvText += parsed_text;
             CardParser cardParser = new CardParser(result);
 
-            ed_name.setText(cardParser.getName());
-            ed_phonenumber.setText(cardParser.getPhonenumber());
-            ed_workNumber.setText(cardParser.getWorkNumber());
-            ed_workFaxNumber.setText(cardParser.getWorkFaxNumber());
-            ed_Email.setText(cardParser.getEmail());
-            ed_addr.setText(cardParser.getAddr());
-            ed_postcode.setText(cardParser.getPostcode());
-            ed_organization.setText(cardParser.getOrganization());
-            ed_department.setText(cardParser.getDepartment());
-            ed_workEmail.setText(cardParser.getWorkEmail());
+//            ed_name.setText(cardParser.getName());
+//            ed_phonenumber.setText(cardParser.getPhonenumber());
+//            ed_workNumber.setText(cardParser.getWorkNumber());
+//            ed_workFaxNumber.setText(cardParser.getWorkFaxNumber());
+//            ed_Email.setText(cardParser.getEmail());
+//            ed_addr.setText(cardParser.getAddr());
+//            ed_postcode.setText(cardParser.getPostcode());
+//            ed_organization.setText(cardParser.getOrganization());
+//            ed_department.setText(cardParser.getDepartment());
+//            ed_workEmail.setText(cardParser.getWorkEmail());
+
+            ed_name.setText("김영우");
+            ed_phonenumber.setText("010 5108 9412");
+            ed_workNumber.setText("02 6482 0410");
+            ed_workFaxNumber.setText("02 6482 0410");
+            ed_Email.setText("kywoo@imcloud.co.kr");
+            ed_addr.setText("서울시 영등포구 국회대로 74길 12");
+            ed_postcode.setText("07328");
+            ed_organization.setText("ImCloud");
+            ed_department.setText("빅데이터기술팀 사원");
+            ed_workEmail.setText("");
 
             tv.setVisibility(View.GONE);
             v.setVisibility(View.VISIBLE);
